@@ -7,6 +7,8 @@ var occhio;
 var mandibola;
 var fumetto;
 
+var cnv;
+
 var lastX=0,lastY=0;
 
 function preload() {
@@ -30,7 +32,8 @@ function setup() {
   
   analyzer = new p5.Amplitude();
   analyzer.setInput(mySound);
-  createCanvas(windowWidth,windowHeight);
+  //createCanvas(windowWidth,windowHeight);
+  cnv=createCanvas(windowWidth,windowHeight);
   
   occhio.mask(occhioMask);
   testa.mask(testaMask);
@@ -40,25 +43,28 @@ function setup() {
 
 
 function draw(){
+  width=windowWidth;
+  height=windowHeight;
+  if(windowWidth<windowHeight){
+    width=windowHeight;
+    height=windowWidth;
+  }
   background(255,255,255);
   push();
-  //image(occhio, height/1.1393*0.66, height*0.26, height/1.1393*0.1, height*0.1);
-  //translate(windowWidth/5,0);
   if(mouseX<width && mouseY<height){
-    image(occhio, map(mouseX, 0, width, height/1.1393*0.6, height/1.1393*0.75), map(mouseY, 0, height, height*0.2, height*0.3), height/1.1393*0.1, height*0.1);
+    image(occhio, map(mouseX, 0, width, height/1.1393*0.6, height/1.1393*0.73), map(mouseY, 0, height, height*0.2, height*0.3), height/1.1393*0.1, height*0.1);
     lastX=mouseX;
     lastY=mouseY;
   }else{
-    image(occhio, map(lastX, 0, width, height/1.1393*0.6, height/1.1393*0.75), map(lastY, 0, height, height*0.2, height*0.3), height/1.1393*0.1, height*0.1);
+      image(occhio, map(lastX, 0, width, height/1.1393*0.6, height/1.1393*0.75), map(lastY, 0, height, height*0.2, height*0.3), height/1.1393*0.1, height*0.1);
   }
   image(testa, 0, 0, height/1.1393, height);
-  if (mySound.isPlaying() == false) {
+  if (mySound.isPlaying() == false || mySound.isPaused() == true) {
     image(mandibola, height/1.1393*0.42, height*0.53, height/1.1393*0.51, height*0.356);
     image(fumetto, height-(height/1.591*0.33), 0, height/1.591*0.33, height*0.33);
   }
   
   if (mySound.isPlaying() == true) {
-        
         var volume = analyzer.getLevel();
         if(volume*1000>150){
         }
@@ -85,6 +91,10 @@ function mousePressed() {
   else
     mySound.stop();
 }
+
+
+
+
 
 function windowResized(){
    resizeCanvas(windowWidth,windowHeight);
