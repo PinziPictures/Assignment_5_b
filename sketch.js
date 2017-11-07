@@ -12,17 +12,17 @@ var lastX=0,lastY=0;
 function preload() {
  mySound = loadSound('./Assets/Walking.mp3');
  
- testa = loadImage("./assets/testa.jpg");
- testaMask = loadImage("./assets/testa.png");
+ testa = loadImage("./Assets/testa.jpg");
+ testaMask = loadImage("./Assets/testa.png");
  
- occhio = loadImage("./assets/occhio.jpg");
- occhioMask = loadImage("./assets/occhio.png");
+ occhio = loadImage("./Assets/occhio.jpg");
+ occhioMask = loadImage("./Assets/occhio.png");
  
- mandibola = loadImage("./assets/mandibola.jpg");
- mandibolaMask = loadImage("./assets/mandibola.png");
+ mandibola = loadImage("./Assets/mandibola.jpg");
+ mandibolaMask = loadImage("./Assets/mandibola.png");
  
- fumetto = loadImage("./assets/bal.jpg");
- fumettoMask = loadImage("./assets/bal.png");
+ fumetto = loadImage("./Assets/bal.jpg");
+ fumettoMask = loadImage("./Assets/bal.png");
 }
 
 function setup() {
